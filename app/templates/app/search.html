@@ -1,0 +1,26 @@
+
+{% extends 'app/base.html' %}
+{% load static %}
+{% block main-content %}
+
+{% if product_list %}
+    <div class="col-sm-8 col-md-12">
+        <div class="row">
+         {% for product in product_list %}
+          <div class="col-sm-4 text-center mb-4">
+           <a href="{% url 'product-detail' product.id %}" class="btn">
+            <div class="item ms-5">
+             <img src="{{product.product_image.url}}" alt="" height="300" class="">
+             <div class="fw-bold">{{product.title}}</div>
+             <div class="fw-bold">Rs. {{product.discounted_price}} <small class="fw-light text-decoration-line-through">{{product.selling_price}}</small></div>
+            </div>
+           </a>
+          </div>
+         {% endfor %}
+        </div>
+       </div>
+
+{% else %}
+  <p>Products table is empty</p>
+{% endif %}
+{% endblock main-content %}
